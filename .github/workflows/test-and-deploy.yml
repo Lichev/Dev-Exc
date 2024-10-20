@@ -28,7 +28,7 @@ jobs:
       run: npm ci
 
     - name: Start the application
-      run: npm start
+      run: npm start &
 
     - name: Run tests
       run: npm test
