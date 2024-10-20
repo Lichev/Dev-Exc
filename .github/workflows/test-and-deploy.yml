@@ -19,10 +19,18 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test  # This ensures the 'deploy' job runs only if 'test' succeeds
+    needs: test 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: Debug Service ID and Token
+      run: |
+        echo "SERVICE_ID: ${{ secrets.SERVICE_ID }}"
+        echo "RENDER_TOKEN: ${{ secrets.RENDER_TOKEN }}"
+      env:
+        RENDER_TOKEN: ${{ secrets.RENDER_TOKEN }}
+
     - name: Deploy to Render
       uses: johnbeynon/render-deploy-action@v0.0.8
       with:
